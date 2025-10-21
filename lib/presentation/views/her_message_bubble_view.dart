@@ -1,4 +1,4 @@
-import 'package:chat_boggy/widgets/message_bubble.dart';
+import 'package:chat_boggy/presentation/widgets/message_bubble.dart';
 import 'package:flutter/material.dart';
 
 class HerMessageBubbleView extends StatelessWidget {

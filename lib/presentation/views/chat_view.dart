@@ -1,7 +1,10 @@
-import 'package:chat_boggy/views/my_message_bubble_view.dart';
-import 'package:chat_boggy/views/her_message_bubble_view.dart';
-import 'package:chat_boggy/widgets/message_field_box.dart';
+import 'package:chat_boggy/domain/entities/message.dart';
+import 'package:chat_boggy/presentation/views/my_message_bubble_view.dart';
+import 'package:chat_boggy/presentation/views/her_message_bubble_view.dart';
+import 'package:chat_boggy/presentation/widgets/message_field_box.dart';
+import 'package:chat_boggy/providers/chat_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChatView extends StatelessWidget{
   const ChatView({super.key});
@@ -9,6 +12,7 @@ class ChatView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final ChatProvider chatProvider = context.watch<ChatProvider>();
     return SafeArea(
       child: Column(
         children: [
@@ -16,23 +20,26 @@ class ChatView extends StatelessWidget{
             child: Padding(
               padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
               child: ListView.builder(
-                itemCount: 4,
+                itemCount: chatProvider.messagesList.length,
                 itemBuilder: (context, index) {
-                  return index % 2 == 0
+                  return chatProvider.messagesList[index].fromWho ==
+                        FromWho.hers 
                       ? HerMessageBubbleView(
                           colorScheme: colorScheme,
                           urlImageBubble:
-                              'https://yesno.wtf/assets/no/8-5e08abbe5aacd2cf531948145b787e9a.gif',
+                              chatProvider.messagesList[index].imageUrl!,
                         )
                       : MyMessageBubbleView(
                           colorScheme: colorScheme,
-                          message: "Hola mundo",
+                          message: chatProvider.messagesList[index].text,
                         );
                 },
               ),
             ),
           ),
-          const MessageFieldBox(),
+          MessageFieldBox(
+            onValue: (String value) => chatProvider.sendMessage(value)
+          ),
         ],
       ),
     );

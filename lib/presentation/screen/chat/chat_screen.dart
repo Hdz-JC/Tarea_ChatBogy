@@ -1,4 +1,4 @@
-import 'package:chat_boggy/views/chat_view.dart';
+import 'package:chat_boggy/presentation/views/chat_view.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget{
