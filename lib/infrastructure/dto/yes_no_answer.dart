@@ -2,7 +2,6 @@ class YesNoAnswer {
   final String answer;
   final bool forced;
   final String image;
-
   YesNoAnswer({
     required this.answer,
     required this.forced,
@@ -13,5 +12,5 @@ class YesNoAnswer {
     answer: json['answer'],
     forced: json['forced'],
     image: json['image'],
-    );
+  );
 }

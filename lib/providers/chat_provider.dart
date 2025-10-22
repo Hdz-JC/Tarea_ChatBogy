@@ -1,4 +1,4 @@
-
+import 'package:chat_boggy/infrastructure/datasource/get_yes_no_anwser.dart';
 import 'package:chat_boggy/domain/entities/message.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +14,12 @@ class ChatProvider extends ChangeNotifier {
     Message(
       text: "También estoy bien. ¿Qué has estado haciendo últimamente?",
       imageUrl:
-          'https://yesno.wtf/assets/yes/2-4a0d5f8f1f3f1e6f1f3f1e6f1f3f1e6f.gif',
+          'https://yesno.wtf/assets/no/8-5e08abbe5aacd2cf531948145b787e9a.gif',
       fromWho: FromWho.hers,
+    ),
+    Message(
+      text: "He estado trabajando en algunos proyectos de Flutter.",
+      fromWho: FromWho.me,
     ),
     Message(
       text: "He estado trabajando en algunos proyectos de Flutter.",
@@ -27,8 +31,12 @@ class ChatProvider extends ChangeNotifier {
     final newMessage = Message(text: message, fromWho: FromWho.me);
     messagesList.add(newMessage);
     notifyListeners();
+    final response = await GetYesNoAnwser().getAnswer();
+    messagesList.add(response);
+    notifyListeners();
   }
 }
+
 
 
 

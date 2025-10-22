@@ -8,7 +8,7 @@ class ChatScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BoggyChat'),
+        title: const Text('my love ❤️'),
         centerTitle: false,
         leading: CircleAvatar(
           backgroundImage: NetworkImage(

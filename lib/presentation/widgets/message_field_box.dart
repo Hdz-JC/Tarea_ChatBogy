@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatefulWidget{
-  final void Function(String) onValue;
-  const MessageFieldBox({super.key, required this.onValue});
+  final Function(String) onSend;
+  const MessageFieldBox({super.key, required this.onSend});
 
   @override
   State<MessageFieldBox> createState() => _MessageFieldBoxState();
@@ -21,15 +21,15 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
     focusNode: focusNode,
     decoration: _customInputDecoration(
       colors: colors,
-      onSend: () {
-        final textValue = textController.value.text;
-        if(textValue.isEmpty){
-          print(textValue);
-          widget.onValue(textValue);
-          textController.clear();
-          focusNode.requestFocus();
-        }
-      },),
+       onSend: () {
+          print('quiero enviar el mensaje ${textController.value.text}');
+          if (textController.value.text.isNotEmpty) {
+            widget.onSend(textController.value.text);
+            textController.clear();
+            focusNode.requestFocus();
+          }
+        },
+      ),
 
     onTapOutside: (event) {
       print('quiero saber que haces $event');
