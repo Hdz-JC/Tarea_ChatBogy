@@ -51,7 +51,7 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
       InputDecoration(
         enabledBorder: _customOutLineInputBorder(colors.primary),
         focusedBorder: _customOutLineInputBorder(colors.primaryContainer),
-        hintText: 'Escribe un mensaje',
+        hintText: 'Envia tu pregunta "?"',
         suffixIcon: IconButton(onPressed: onSend, icon: const Icon(Icons.send)),
       );
 
@@ -61,3 +61,4 @@ class _MessageFieldBoxState extends State<MessageFieldBox> {
       borderRadius: BorderRadius.circular(20),
     );
 }
+
